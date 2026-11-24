@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es-VE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DASH Gestión Residencial | Administración de edificios residenciales en Maracaibo</title>
+<meta name="description" content="Administración y gestión de edificios residenciales en toda Venezuela. Cuentas claras, cobranza respetuosa y tranquilidad para su comunidad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --crema:#F4F3EE; --blanco:#FFFFFF; --marino:#1F4A6E; --tinta:#16324A;
+  --turquesa:#3F9FA3; --turquesa-os:#2A7A7E; --coral:#DE7A58; --linea:#D9DCD8; --suave:#4A6074;
+  --fuente:"Montserrat","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{margin:0;background:var(--crema);color:var(--tinta);font-family:var(--fuente);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;}
+:focus-visible{outline:3px solid var(--turquesa-os);outline-offset:3px;border-radius:4px;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+h1,h2,h3{font-weight:700;line-height:1.15;margin:0;color:var(--marino);letter-spacing:-.01em;}
+p{margin:0;}
+
+/* Barra superior */
+header{padding:20px 0;}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.marca{text-decoration:none;display:flex;flex-direction:column;line-height:1.05;}
+.marca b{font-size:26px;font-weight:800;color:var(--marino);letter-spacing:.01em;}
+.marca span{font-size:12.5px;font-weight:600;color:var(--marino);}
+.boton{display:inline-block;background:var(--marino);color:#fff;text-decoration:none;font-weight:600;font-size:16px;padding:14px 26px;border-radius:999px;border:2px solid var(--marino);transition:background .15s,color .15s;}
+.boton:hover{background:var(--tinta);border-color:var(--tinta);}
+.boton.claro{background:transparent;color:var(--marino);}
+.boton.claro:hover{background:var(--marino);color:#fff;}
+header .boton{padding:10px 20px;font-size:15px;}
+
+/* Portada */
+.portada{padding:56px 0 88px;}
+.portada .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+.portada h1{font-size:clamp(36px,5.4vw,60px);font-weight:800;}
+.portada h1 em{font-style:normal;color:var(--turquesa-os);display:block;}
+.portada .sub{margin-top:24px;font-size:19px;color:var(--suave);max-width:34em;}
+.acciones{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;}
+
+/* Recibo de ejemplo: lo más característico de lo que hacemos */
+.recibo{background:var(--blanco);border-radius:14px;padding:26px 26px 22px;box-shadow:0 18px 40px -22px rgba(31,74,110,.45);border-top:6px solid var(--coral);font-size:15px;}
+.recibo .tit{font-weight:700;color:var(--marino);font-size:17px;}
+.recibo .nota{font-size:13px;color:var(--suave);margin-top:2px;}
+.recibo dl{margin:18px 0 0;}
+.recibo .fila{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--linea);}
+.recibo dt{color:var(--suave);}
+.recibo dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.recibo .total{border-bottom:0;padding-top:14px;font-size:17px;}
+.recibo .total dt,.recibo .total dd{color:var(--marino);font-weight:700;}
+.recibo .pie{margin-top:12px;font-size:13px;color:var(--suave);border-top:1px dashed var(--linea);padding-top:12px;}
+
+/* Secciones */
+section{padding:72px 0;}
+.blanca{background:var(--blanco);}
+.marino{background:var(--marino);color:#fff;}
+.marino h2{color:#fff;}
+.intro{max-width:36em;margin-top:16px;color:var(--suave);}
+.marino .intro{color:#D6E2EC;}
+h2{font-size:clamp(28px,3.6vw,40px);font-weight:700;}
+
+/* Qué entregamos: lista de filas con filete, sin tarjetas */
+.entregas{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:0 56px;}
+.entrega{padding:24px 0;border-top:3px solid var(--turquesa);}
+.entrega:nth-child(4n+2),.entrega:nth-child(4n+3){border-top-color:var(--coral);}
+.entrega h3{font-size:19px;margin-bottom:8px;}
+.entrega p{color:var(--suave);font-size:16px;}
+
+/* Cómo trabajamos: sí es una secuencia, por eso va numerada */
+.pasos{margin:40px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:paso;}
+.pasos li{counter-increment:paso;border-top:1px solid rgba(255,255,255,.3);padding-top:18px;}
+.pasos li::before{content:counter(paso);display:block;font-size:44px;font-weight:800;color:var(--coral);line-height:1;margin-bottom:12px;}
+.pasos h3{color:#fff;font-size:18px;margin-bottom:6px;}
+.pasos p{color:#D6E2EC;font-size:15.5px;}
+
+/* Experiencia y para quién */
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+.dos p{margin-top:16px;color:var(--suave);}
+.dos ul{margin:16px 0 0;padding-left:20px;color:var(--suave);}
+.dos li{margin-bottom:8px;}
+
+/* Preguntas */
+details{border-top:1px solid var(--linea);padding:18px 0;}
+details:last-of-type{border-bottom:1px solid var(--linea);}
+summary{cursor:pointer;font-weight:600;color:var(--marino);font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px;}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:"+";font-size:24px;line-height:1;color:var(--coral);font-weight:600;}
+details[open] summary::after{content:"\2212";}
+details p{margin-top:12px;color:var(--suave);max-width:40em;}
+.preguntas{margin-top:32px;max-width:760px;}
+
+/* Contacto */
+.contacto{text-align:left;}
+.contacto .boton{background:#fff;color:var(--marino);border-color:#fff;margin-top:30px;}
+.contacto .boton:hover{background:var(--crema);border-color:var(--crema);}
+footer{padding:28px 0;font-size:14px;color:var(--suave);}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;}
+
+@media (max-width:860px){
+  .portada .wrap,.dos{grid-template-columns:1fr;gap:40px;}
+  .entregas{grid-template-columns:1fr;}
+  .entrega:nth-child(n){border-top-color:var(--turquesa);}
+  .entrega:nth-child(even){border-top-color:var(--coral);}
+  .pasos{grid-template-columns:1fr 1fr;}
+  section{padding:56px 0;}
+}
+@media (max-width:520px){
+  body{font-size:16px;}
+  .pasos{grid-template-columns:1fr;}
+  header .boton{display:none;}
+  .portada{padding:32px 0 56px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="DASH Gestión Residencial, inicio"><b>DASH</b><span>Gestión Residencial</span></a>
+    <a class="boton" data-wa href="#contacto">Escribirnos</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="portada">
+    <div class="wrap">
+      <div>
+        <h1>Su edificio en orden.<em>Su comunidad, tranquila.</em></h1>
+        <p class="sub">Administramos y gestionamos edificios residenciales en Maracaibo. Cuentas claras, cobranza respetuosa y propietarios informados cada mes.</p>
+        <div class="acciones">
+          <a class="boton" data-wa href="#contacto">Hablar por WhatsApp</a>
+          <a class="boton claro" href="#como">Ver cómo trabajamos</a>
+        </div>
+      </div>
+
+      <aside class="recibo" aria-label="Ejemplo de recibo de condominio">
+        <div class="tit">Recibo de condominio</div>
+        <div class="nota">Ejemplo ilustrativo con cifras inventadas</div>
+        <dl>
+          <div class="fila"><dt>Gastos fijos</dt><dd>Bs 500.000,00</dd></div>
+          <div class="fila"><dt>Gastos variables</dt><dd>Bs 250.000,00</dd></div>
+          <div class="fila"><dt>Fondo de reserva (30 %)</dt><dd>Bs 225.000,00</dd></div>
+          <div class="fila total"><dt>Total del mes</dt><dd>Bs 975.000,00</dd></div>
+        </dl>
+        <p class="pie">Cada propietario recibe el detalle de lo que se gastó y cuánto le corresponde pagar.</p>
+      </aside>
+    </div>
+  </div>
+
+  <section class="blanca" id="servicios">
+    <div class="wrap">
+      <h2>Lo que su comunidad recibe de nosotros</h2>
+      <p class="intro">La tranquilidad de una comunidad depende de que todos puedan ver cómo se manejan las cuentas. Eso es lo primero que cuidamos.</p>
+      <div class="entregas">
+        <div class="entrega">
+          <h3>Cuentas claras</h3>
+          <p>Cada mes se publica la cuota con el detalle de gastos fijos, gastos variables y fondo de reserva.</p>
+        </div>
+        <div class="entrega">
+          <h3>Recibos y comprobantes</h3>
+          <p>Todo pago recibido y todo gasto pagado queda respaldado con un recibo o comprobante numerado.</p>
+        </div>
+        <div class="entrega">
+          <h3>Estado de cuenta por apartamento</h3>
+          <p>Cada propietario puede saber cuánto ha pagado, qué cuotas tiene pendientes y cuál es su saldo.</p>
+        </div>
+        <div class="entrega">
+          <h3>Cobranza respetuosa</h3>
+          <p>Recordatorios privados por WhatsApp, con el monto exacto y los datos para pagar. Sin presiones ni mensajes en grupos.</p>
+        </div>
+        <div class="entrega">
+          <h3>Fondo de emergencia a la vista</h3>
+          <p>El fondo se lleva por separado y se informa, para que la comunidad sepa con qué cuenta ante un imprevisto.</p>
+        </div>
+        <div class="entrega">
+          <h3>Atención a la junta</h3>
+          <p>Respondemos las consultas de la junta y de los propietarios con cifras, no con suposiciones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="marino" id="como">
+    <div class="wrap">
+      <h2>Cómo trabajamos</h2>
+      <p class="intro">Empezar con nosotros no interrumpe la vida del edificio. Vamos por etapas.</p>
+      <ol class="pasos">
+        <li><h3>Conversamos con la junta</h3><p>Conocemos el edificio, sus necesidades y lo que hoy no está funcionando.</p></li>
+        <li><h3>Ordenamos las cuentas</h3><p>Reunimos el listado de apartamentos, los saldos y el historial de pagos para partir de cifras reales.</p></li>
+        <li><h3>Emitimos la primera cuota</h3><p>Se publica la cuota con su detalle y los propietarios reciben su recibo.</p></li>
+        <li><h3>Rendimos cuentas cada mes</h3><p>Pagos recibidos, gastos realizados y saldo del banco, todo a la vista de la comunidad.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap dos">
+      <div>
+        <h2>Una referencia real</h2>
+        <p>Hoy administramos un conjunto residencial de 58 unidades. Llevamos sus cuentas con las mismas herramientas y la misma disciplina que pondríamos en su edificio.</p>
+        <p>Preferimos ser pocos y atender bien, antes que prometer lo que no podemos cumplir.</p>
+      </div>
+      <div>
+        <h2>Para quién trabajamos</h2>
+        <ul>
+          <li>Juntas de condominio que buscan una administración ordenada y transparente.</li>
+          <li>Edificios que hoy no tienen administrador.</li>
+          <li>Comunidades que quieren cambiar de administración y necesitan una propuesta clara.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="blanca" id="preguntas">
+    <div class="wrap">
+      <h2>Preguntas frecuentes</h2>
+      <div class="preguntas">
+        <details>
+          <summary>¿Cuánto cuesta el servicio?</summary>
+          <p>Depende del tamaño del edificio y de lo que necesite. Escríbanos y le enviamos una propuesta por escrito.</p>
+        </details>
+        <details>
+          <summary>¿Cómo cambia un edificio de administrador?</summary>
+          <p>La decisión le corresponde a la junta y a la asamblea de propietarios. Nosotros preparamos una propuesta para que ustedes la presenten.</p>
+        </details>
+        <details>
+          <summary>¿Qué necesitan de nuestra parte para empezar?</summary>
+          <p>El listado de apartamentos con sus propietarios, el historial de pagos disponible y el saldo actual de la cuenta del edificio. Con eso armamos el punto de partida.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="marino contacto" id="contacto">
+    <div class="wrap">
+      <h2>Hablemos de su edificio</h2>
+      <p class="intro">Cuéntenos cuántas unidades tiene y cómo se administra hoy. Le respondemos con una propuesta.</p>
+      <a class="boton" data-wa href="#contacto">Escribirnos por WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>DASH Gestión Residencial</span>
+    <span>Maracaibo, Venezuela</span>
+  </div>
+</footer>
+
+<script>
+// Cambia este número por el WhatsApp de DASH Gestión Residencial: código de país + número, solo dígitos (ejemplo: 584141234567).
+var WHATSAPP = '584246396681';
+var MENSAJE = 'Hola, quiero información sobre la administración de mi edificio.';
+document.querySelectorAll('[data-wa]').forEach(function(a){
+  a.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(MENSAJE);
+  a.target = '_blank'; a.rel = 'noopener';
+});
+</script>
+</body>
+</html>
